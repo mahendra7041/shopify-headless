@@ -1,10 +1,22 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+import { createInertiaApp } from "@inertiajs/react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+type PageComponent = React.ComponentType<any>;
+
+interface PageModule {
+  default: PageComponent;
+}
+
+createInertiaApp({
+  id: "root",
+  resolve: (name) => {
+    const pages = import.meta.glob("./pages/**/*.tsx", {
+      eager: true,
+    }) as Record<string, PageModule>;
+    return pages[`./pages/${name}.tsx`];
+  },
+  setup({ el, App, props }) {
+    createRoot(el!).render(<App {...props} />);
+  },
+});
