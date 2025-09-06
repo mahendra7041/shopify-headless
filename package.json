@@ -13,8 +13,12 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.7",
+    "@heroicons/react": "^2.2.0",
     "@inertiajs/react": "^2.1.4",
     "@shopify/graphql-client": "^1.4.1",
+    "@tailwindcss/vite": "^4.1.13",
+    "clsx": "^2.1.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^17.2.2",
@@ -23,10 +27,13 @@
     "express-session": "^1.18.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "shopify-api-types": "^0.0.5-alpha"
+    "shopify-api-types": "^0.0.5-alpha",
+    "tailwindcss": "^4.1.13"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
+    "@tailwindcss/container-queries": "^0.1.1",
+    "@tailwindcss/typography": "^0.5.16",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/express-session": "^1.18.2",

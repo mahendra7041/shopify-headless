@@ -268,5 +268,18 @@ export type ShopifyProductsOperation = {
     query?: string;
     reverse?: boolean;
     sortKey?: string;
+    first?: number;
+  };
+};
+
+export type ShopifyLayoutQuery = {
+  data: {
+    shop: any;
+    headerMenu: ShopifyMenuOperation["data"]["menu"];
+    footerMenu: ShopifyMenuOperation["data"]["menu"];
+  };
+  variables: {
+    headerMenuHandle: string;
+    footerMenuHandle: string;
   };
 };

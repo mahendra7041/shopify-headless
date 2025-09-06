@@ -43,11 +43,9 @@ import GetProductRecommendationsQuery from "../graphql/GetProductRecommendations
 import GetProductsQuery from "../graphql/GetProductsQuery";
 import CreateCartMutation from "../graphql/CreateCartMutation";
 
-const domain = process.env.SHOPIFY_STORE_DOMAIN
-  ? ensureStartsWith(process.env.SHOPIFY_STORE_DOMAIN, "https://")
-  : "";
+const domain = `https://mahendra-test-store2.myshopify.com`;
 const endpoint = `${domain}${SHOPIFY_GRAPHQL_API_ENDPOINT}`;
-const key = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN!;
+const key = "3551b7606bac6247bba3c6ffe7439df1";
 
 type ExtractVariables<T> = T extends { variables: object }
   ? T["variables"]
@@ -316,10 +314,12 @@ export async function getProducts({
   query,
   reverse,
   sortKey,
+  first = 8,
 }: {
   query?: string;
   reverse?: boolean;
   sortKey?: string;
+  first?: number;
 }): Promise<Product[]> {
   const res = await shopifyFetch<ShopifyProductsOperation>({
     query: GetProductsQuery,
@@ -327,6 +327,7 @@ export async function getProducts({
       query,
       reverse,
       sortKey,
+      first,
     },
   });
 
@@ -434,7 +435,7 @@ export async function revalidate(
   const isCollectionUpdate = collectionWebhooks.includes(topic);
   const isProductUpdate = productWebhooks.includes(topic);
 
-  if (!secret || secret !== process.env.SHOPIFY_REVALIDATION_SECRET) {
+  if (!secret || secret !== "abc") {
     console.error("Invalid revalidation secret.");
     return res.json({ status: 401 });
   }
