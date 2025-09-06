@@ -1,7 +1,7 @@
-import imageFragment from './image';
-import seoFragment from './seo';
+import ImageFragment from "./ImageFragment";
+import SeoFragment from "./SeoFragment";
 
-const productFragment = /* GraphQL */ `
+const ProductFragment = `#graphql
   fragment product on Product {
     id
     handle
@@ -57,8 +57,8 @@ const productFragment = /* GraphQL */ `
     tags
     updatedAt
   }
-  ${imageFragment}
-  ${seoFragment}
+  ${ImageFragment}
+  ${SeoFragment}
 `;
 
-export default productFragment;
+export default ProductFragment;

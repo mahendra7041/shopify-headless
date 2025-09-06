@@ -1,7 +1,8 @@
 import "dotenv/config";
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 import session from "express-session";
 import inertia from "express-inertia";
+import cookieParser from "cookie-parser";
 import inertiaConfig from "./configs/inertia.config.js";
 import sessionConfig from "./configs/session.config.js";
 import router from "./app/router.js";
@@ -14,10 +15,16 @@ async function bootstrap() {
     app.use(express.static("build/client", { index: false }));
   }
 
+  app.use(cookieParser());
   app.use(session(sessionConfig));
   app.use(await inertia(inertiaConfig));
 
   app.use(router);
+
+  app.use((error: any, req: Request, res: Response, _next: NextFunction) => {
+    console.log(error);
+    res.send("Internal Server Error");
+  });
 
   app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);

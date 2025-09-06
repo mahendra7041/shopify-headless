@@ -14,13 +14,16 @@
   },
   "dependencies": {
     "@inertiajs/react": "^2.1.4",
+    "@shopify/graphql-client": "^1.4.1",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
     "express-inertia": "^1.6.7",
     "express-session": "^1.18.2",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "shopify-api-types": "^0.0.5-alpha"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",

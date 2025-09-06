@@ -10,7 +10,7 @@ export default tseslint.config([
 
   // Frontend rules (React + TS)
   {
-    files: ["**/*.{ts,tsx}"],
+    files: ["src/**/*.{ts,tsx}"],
     extends: [
       js.configs.recommended,
       tseslint.configs.recommended,
@@ -29,7 +29,7 @@ export default tseslint.config([
 
   // Backend rules (app directory) — much lighter
   {
-    files: ["app/**/*.{ts,js}"],
+    files: ["app/**/*.{ts,js}", "server.ts"],
     extends: [js.configs.recommended, tseslint.configs.recommended],
     languageOptions: {
       ecmaVersion: 2020,

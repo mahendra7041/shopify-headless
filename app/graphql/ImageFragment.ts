@@ -1,4 +1,4 @@
-const imageFragment = /* GraphQL */ `
+const ImageFragment = `#graphql
   fragment image on Image {
     url
     altText
@@ -7,4 +7,4 @@ const imageFragment = /* GraphQL */ `
   }
 `;
 
-export default imageFragment;
+export default ImageFragment;
