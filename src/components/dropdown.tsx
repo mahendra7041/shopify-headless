@@ -3,12 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import type { ListItem } from ".";
-import { FilterItem } from "./item";
+import type { ListItem } from "./filter";
+import { FilterItem } from "./filter-item";
+import { useQueryParams } from "../hooks/useQueryParam";
+import { usePathname } from "../hooks/usePathname";
 
 export default function FilterItemDropdown({ list }: { list: ListItem[] }) {
-  const pathname = "";
-  const searchParams = new Map();
+  const pathname = usePathname();
+  const searchParams = useQueryParams();
   const [active, setActive] = useState("");
   const [openSelect, setOpenSelect] = useState(false);
   const ref = useRef<HTMLDivElement>(null);

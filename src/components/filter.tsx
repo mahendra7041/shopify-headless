@@ -1,7 +1,7 @@
-import type { SortFilterItem } from "../../../../app/utils/constants";
+import type { SortFilterItem } from "../../app/utils/constants";
 import { Suspense } from "react";
 import FilterItemDropdown from "./dropdown";
-import { FilterItem } from "./item";
+import { FilterItem } from "./filter-item";
 
 export type ListItem = SortFilterItem | PathFilterItem;
 export type PathFilterItem = { title: string; path: string };

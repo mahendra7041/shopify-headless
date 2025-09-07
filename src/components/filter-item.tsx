@@ -1,14 +1,16 @@
 "use client";
 
 import clsx from "clsx";
-import type { SortFilterItem } from "../../../../app/utils/constants";
-import { createUrl } from "../../../../app/utils/helper";
+import type { SortFilterItem } from "../../app/utils/constants";
+import { createUrl } from "../../app/utils/helper";
 import { Link } from "@inertiajs/react";
-import type { ListItem, PathFilterItem } from ".";
+import type { ListItem, PathFilterItem } from "./filter";
+import { useQueryParams } from "../hooks/useQueryParam";
+import { usePathname } from "../hooks/usePathname";
 
 function PathFilterItem({ item }: { item: PathFilterItem }) {
-  const pathname = "";
-  const searchParams = new Map();
+  const pathname = usePathname();
+  const searchParams = useQueryParams();
   const active = pathname === item.path;
   const newParams = new URLSearchParams(searchParams.toString());
   const DynamicTag = active ? "p" : Link;
@@ -33,8 +35,8 @@ function PathFilterItem({ item }: { item: PathFilterItem }) {
 }
 
 function SortFilterItem({ item }: { item: SortFilterItem }) {
-  const pathname = "";
-  const searchParams = new Map();
+  const pathname = usePathname();
+  const searchParams = useQueryParams();
   const active = searchParams.get("sort") === item.slug;
   const q = searchParams.get("q");
   const href = createUrl(

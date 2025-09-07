@@ -1,22 +1,19 @@
-import CartModal from "../../components/cart/modal";
-import LogoSquare from "../../components/logo-square";
-import type { Menu } from "../../../app/types/shopify";
-import { usePage, Link } from "@inertiajs/react";
-import { Suspense } from "react";
+import CartModal from "./cart-modal";
+import LogoSquare from "./logo-square";
 import MobileMenu from "./mobile-menu";
-import Search, { SearchSkeleton } from "./search";
+import Search from "./search";
+import { usePage, Link } from "@inertiajs/react";
+import type { Menu } from "../../app/types/shopify";
 
 const SITE_NAME = "SITE_NAME";
 
-export function Navbar() {
+export default function Navbar() {
   const menu = usePage().props.headerMenu as Menu[];
 
   return (
     <nav className="relative flex items-center justify-between p-4 lg:px-6">
       <div className="block flex-none md:hidden">
-        <Suspense fallback={null}>
-          <MobileMenu menu={menu} />
-        </Suspense>
+        <MobileMenu menu={menu} />
       </div>
       <div className="flex w-full items-center">
         <div className="flex w-full md:w-1/3">
@@ -47,9 +44,7 @@ export function Navbar() {
           ) : null}
         </div>
         <div className="hidden justify-center md:flex md:w-1/3">
-          <Suspense fallback={<SearchSkeleton />}>
-            <Search />
-          </Suspense>
+          <Search />
         </div>
         <div className="flex justify-end md:w-1/3">
           <CartModal />

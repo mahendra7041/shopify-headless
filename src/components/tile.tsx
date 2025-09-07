@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import Label from "../label";
+import Label from "./label";
 
 export function GridTileImage({
   isInteractive = true,

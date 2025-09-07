@@ -1,7 +1,6 @@
 import type { ReactElement } from "react";
-import Layout from "../layout/layout";
 import Grid from "../components/grid";
-import ProductGridItems from "../layout/product-grid-items";
+import ProductGridItems from "../components/product-grid-items";
 import type { Product } from "../../app/types/shopify";
 import SearchLayout from "../layout/search-layout";
 
@@ -18,10 +17,6 @@ function search({ products }: { products: Product[] }) {
   );
 }
 
-search.layout = (page: ReactElement) => (
-  <Layout>
-    <SearchLayout>{page}</SearchLayout>
-  </Layout>
-);
+search.layout = (page: ReactElement) => <SearchLayout>{page}</SearchLayout>;
 
 export default search;

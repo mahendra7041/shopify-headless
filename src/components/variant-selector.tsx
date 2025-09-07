@@ -1,8 +1,8 @@
 "use client";
 
 import clsx from "clsx";
-import { useProduct } from "../../components/product/product-context";
-import type { ProductOption, ProductVariant } from "../../../app/types/shopify";
+import type { ProductOption, ProductVariant } from "../../app/types/shopify";
+import { useProductStore, useUpdateURL } from "../hooks/useProductStore";
 
 type Combination = {
   id: string;
@@ -17,8 +17,9 @@ export function VariantSelector({
   options: ProductOption[];
   variants: ProductVariant[];
 }) {
-  const { state, updateOption } = useProduct();
-  const updateURL = (_abc: any) => {};
+  const { state, updateOption } = useProductStore();
+  const updateURL = useUpdateURL();
+
   const hasNoOptionsOrJustOneOption =
     !options.length ||
     (options.length === 1 && options[0]?.values.length === 1);
@@ -72,8 +73,8 @@ export function VariantSelector({
             return (
               <button
                 formAction={() => {
-                  const newState = updateOption(optionNameLowerCase, value);
-                  updateURL(newState);
+                  updateOption(optionNameLowerCase, value);
+                  updateURL({ [optionNameLowerCase]: value });
                 }}
                 key={value}
                 aria-disabled={!isAvailableForSale}

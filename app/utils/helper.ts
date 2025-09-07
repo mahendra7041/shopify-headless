@@ -42,3 +42,7 @@ export const ensureStartsWith = (stringToCheck: string, startsWith: string) =>
 //     );
 //   }
 // };
+
+export function calculateItemCost(quantity: number, price: string): string {
+  return (Number(price) * quantity).toString();
+}

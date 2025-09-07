@@ -1,15 +1,13 @@
 import type { ReactElement } from "react";
-import Layout from "../layout/layout";
-import { ThreeItemGrid } from "../components/grid/three-items";
+import Layout from "../layout/main-layout";
+import { ThreeItemGrid } from "../components/three-items";
 import { Carousel } from "../components/carousel";
-import Footer from "../layout/footer";
 
 function home() {
   return (
     <>
       <ThreeItemGrid />
       <Carousel />
-      <Footer />
     </>
   );
 }

@@ -16,6 +16,7 @@ async function bootstrap() {
   }
 
   app.use(cookieParser());
+  app.use(express.json());
   app.use(session(sessionConfig));
   app.use(await inertia(inertiaConfig));
 

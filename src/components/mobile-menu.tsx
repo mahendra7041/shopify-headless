@@ -1,16 +1,17 @@
 "use client";
 
+import { Fragment, useEffect, useState } from "react";
+import { Link } from "@inertiajs/react";
 import { Dialog, Transition } from "@headlessui/react";
-import { Link, usePage } from "@inertiajs/react";
-import { Fragment, Suspense, useEffect, useState } from "react";
-
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import type { Menu } from "../../../app/types/shopify";
-import Search, { SearchSkeleton } from "./search";
+import Search from "./search";
+import { useQueryParams } from "../hooks/useQueryParam";
+import { usePathname } from "../hooks/usePathname";
+import type { Menu } from "../../app/types/shopify";
 
 export default function MobileMenu({ menu }: { menu: Menu[] }) {
-  const pathname = usePage().url;
-  const searchParams = null;
+  const pathname = usePathname();
+  const searchParams = useQueryParams();
   const [isOpen, setIsOpen] = useState(false);
   const openMobileMenu = () => setIsOpen(true);
   const closeMobileMenu = () => setIsOpen(false);
@@ -71,9 +72,7 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
                 </button>
 
                 <div className="mb-4 w-full">
-                  <Suspense fallback={<SearchSkeleton />}>
-                    <Search />
-                  </Suspense>
+                  <Search />
                 </div>
                 {menu.length ? (
                   <ul className="flex w-full flex-col">

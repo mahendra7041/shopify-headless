@@ -4,9 +4,10 @@ import clsx from "clsx";
 import type { Menu } from "../../app/types/shopify";
 import { Link } from "@inertiajs/react";
 import { useEffect, useState } from "react";
+import { usePathname } from "../hooks/usePathname";
 
 export function FooterMenuItem({ item }: { item: Menu }) {
-  const pathname = "";
+  const pathname = usePathname();
   const [active, setActive] = useState(pathname === item.path);
 
   useEffect(() => {

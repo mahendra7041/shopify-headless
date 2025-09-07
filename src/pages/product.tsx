@@ -1,16 +1,16 @@
 import { type ReactElement } from "react";
-import Layout from "../layout/layout";
-import type { Image, Product, ShopifyProduct } from "../../app/types/shopify";
-import { ProductProvider } from "../components/product/product-context";
-import { ProductDescription } from "../components/product/product-description";
-import { Gallery } from "../components/product/gallery";
-import Footer from "../layout/footer";
-import { Link, usePage } from "@inertiajs/react";
-import { GridTileImage } from "../components/grid/tile";
+import type { Image, Product } from "../../app/types/shopify";
+import { ProductDescription } from "../components/product-description";
+import { Gallery } from "../components/gallery";
+import Layout from "../layout/main-layout";
+import { RelatedProducts } from "../components/related-products";
+import { useInitProductState } from "../hooks/useProductStore";
 
 function product({ product }: { product: Product }) {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useInitProductState();
   return (
-    <ProductProvider>
+    <>
       {/* <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -34,46 +34,7 @@ function product({ product }: { product: Product }) {
         </div>
         <RelatedProducts />
       </div>
-      <Footer />
-    </ProductProvider>
-  );
-}
-
-function RelatedProducts() {
-  const relatedProducts = usePage().props.relatedProducts as ShopifyProduct[];
-
-  if (!relatedProducts.length) return null;
-
-  return (
-    <div className="py-8">
-      <h2 className="mb-4 text-2xl font-bold">Related Products</h2>
-      <ul className="flex w-full gap-4 overflow-x-auto pt-1">
-        {relatedProducts.map((product) => (
-          <li
-            key={product.handle}
-            className="aspect-square w-full flex-none min-[475px]:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5"
-          >
-            <Link
-              className="relative h-full w-full"
-              href={`/product/${product.handle}`}
-              prefetch={true}
-            >
-              <GridTileImage
-                alt={product.title}
-                label={{
-                  title: product.title,
-                  amount: product.priceRange.maxVariantPrice.amount,
-                  currencyCode: product.priceRange.maxVariantPrice.currencyCode,
-                }}
-                src={product.featuredImage?.url}
-                l
-                sizes="(min-width: 1024px) 20vw, (min-width: 768px) 25vw, (min-width: 640px) 33vw, (min-width: 475px) 50vw, 100vw"
-              />
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    </>
   );
 }
 

@@ -1,35 +1,34 @@
-"use client";
-
 import { Dialog, Transition } from "@headlessui/react";
 import { ShoppingCartIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
-import LoadingDots from "../../components/loading-dots";
-import Price from "../../components/price";
-import { DEFAULT_OPTION } from "../../../app/utils/constants";
-import { createUrl } from "../../../app/utils/helper";
-import { Link } from "@inertiajs/react";
+import LoadingDots from "./loading-dots";
+import Price from "./price";
+import { DEFAULT_OPTION } from "../../app/utils/constants";
+import { createUrl } from "../../app/utils/helper";
+import { Link, usePage } from "@inertiajs/react";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
-import { createCartAndSetCookie, redirectToCheckout } from "./actions";
-import { useCart } from "./cart-context";
 import { DeleteItemButton } from "./delete-item-button";
 import { EditItemQuantityButton } from "./edit-item-quantity-button";
 import OpenCart from "./open-cart";
+import type { Cart } from "../../app/types/shopify";
 
 type MerchandiseSearchParams = {
   [key: string]: string;
 };
 
 export default function CartModal() {
-  const { cart, updateCartItem } = useCart();
+  const cart = usePage().props.cart as Cart;
   const [isOpen, setIsOpen] = useState(false);
   const quantityRef = useRef(cart?.totalQuantity);
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
+  const updateCartItem = () => {};
+  const redirectToCheckout = "/";
 
   useEffect(() => {
     if (!cart) {
-      createCartAndSetCookie();
+      // createCartAndSetCookie();
     }
   }, [cart]);
 
@@ -122,10 +121,7 @@ export default function CartModal() {
                           >
                             <div className="relative flex w-full flex-row justify-between px-1 py-4">
                               <div className="absolute z-40 -ml-1 -mt-2">
-                                <DeleteItemButton
-                                  item={item}
-                                  optimisticUpdate={updateCartItem}
-                                />
+                                <DeleteItemButton item={item} />
                               </div>
                               <div className="flex flex-row">
                                 <div className="relative h-16 w-16 overflow-hidden rounded-md border border-neutral-300 bg-neutral-300 dark:border-neutral-700 dark:bg-neutral-900 dark:hover:bg-neutral-800">
@@ -173,7 +169,6 @@ export default function CartModal() {
                                   <EditItemQuantityButton
                                     item={item}
                                     type="minus"
-                                    optimisticUpdate={updateCartItem}
                                   />
                                   <p className="w-6 text-center">
                                     <span className="w-full text-sm">
@@ -183,7 +178,6 @@ export default function CartModal() {
                                   <EditItemQuantityButton
                                     item={item}
                                     type="plus"
-                                    optimisticUpdate={updateCartItem}
                                   />
                                 </div>
                               </div>

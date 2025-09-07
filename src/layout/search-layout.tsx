@@ -1,6 +1,6 @@
-import Footer from "./footer";
-import Collections from "./search/collections";
-import FilterList from "./search/filter";
+import Collections from "../components/collections";
+import FilterList from "../components/filter";
+import Layout from "./main-layout";
 import { sorting } from "../../app/utils/constants";
 
 export default function SearchLayout({
@@ -9,7 +9,7 @@ export default function SearchLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <Layout>
       <div className="mx-auto flex max-w-(--breakpoint-2xl) flex-col gap-8 px-4 pb-4 text-black md:flex-row dark:text-white">
         <div className="order-first w-full flex-none md:max-w-[125px]">
           <Collections />
@@ -21,7 +21,6 @@ export default function SearchLayout({
           <FilterList list={sorting} title="Sort by" />
         </div>
       </div>
-      <Footer />
-    </>
+    </Layout>
   );
 }

@@ -1,12 +1,10 @@
 import { Link, usePage } from "@inertiajs/react";
-import { GridTileImage } from "./grid/tile";
+import { GridTileImage } from "./tile";
 
 export function Carousel() {
   const products = usePage().props.products as any;
 
   if (!products?.length) return null;
-
-  // Purposefully duplicating products to make the carousel loop and not run out of products on wide screens.
   const carouselProducts = [...products, ...products, ...products];
 
   return (
