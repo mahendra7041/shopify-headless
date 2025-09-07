@@ -1,7 +1,11 @@
-'use client';
+"use client";
 
-import { useRouter, useSearchParams } from 'next/navigation';
-import React, { createContext, useContext, useMemo, useOptimistic } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useMemo,
+  useOptimistic,
+} from "react";
 
 type ProductState = {
   [key: string]: string;
@@ -18,7 +22,7 @@ type ProductContextType = {
 const ProductContext = createContext<ProductContextType | undefined>(undefined);
 
 export function ProductProvider({ children }: { children: React.ReactNode }) {
-  const searchParams = useSearchParams();
+  const searchParams = new Map();
 
   const getInitialState = () => {
     const params: ProductState = {};
@@ -32,7 +36,7 @@ export function ProductProvider({ children }: { children: React.ReactNode }) {
     getInitialState(),
     (prevState: ProductState, update: ProductState) => ({
       ...prevState,
-      ...update
+      ...update,
     })
   );
 
@@ -52,30 +56,32 @@ export function ProductProvider({ children }: { children: React.ReactNode }) {
     () => ({
       state,
       updateOption,
-      updateImage
+      updateImage,
     }),
     [state]
   );
 
-  return <ProductContext.Provider value={value}>{children}</ProductContext.Provider>;
+  return (
+    <ProductContext.Provider value={value}>{children}</ProductContext.Provider>
+  );
 }
 
 export function useProduct() {
   const context = useContext(ProductContext);
   if (context === undefined) {
-    throw new Error('useProduct must be used within a ProductProvider');
+    throw new Error("useProduct must be used within a ProductProvider");
   }
   return context;
 }
 
-export function useUpdateURL() {
-  const router = useRouter();
+// export function useUpdateURL() {
+//   const router = useRouter();
 
-  return (state: ProductState) => {
-    const newParams = new URLSearchParams(window.location.search);
-    Object.entries(state).forEach(([key, value]) => {
-      newParams.set(key, value);
-    });
-    router.push(`?${newParams.toString()}`, { scroll: false });
-  };
-}
+//   return (state: ProductState) => {
+//     const newParams = new URLSearchParams(window.location.search);
+//     Object.entries(state).forEach(([key, value]) => {
+//       newParams.set(key, value);
+//     });
+//     router.push(`?${newParams.toString()}`, { scroll: false });
+//   };
+// }

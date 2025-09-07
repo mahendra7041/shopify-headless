@@ -6,8 +6,8 @@ export default async function shareLayoutData(
   res: Response,
   next: NextFunction
 ) {
-  const headerMenu = getMenu("main-menu").catch(() => []);
-  const footerMenu = getMenu("main-menu").catch(() => []);
+  const headerMenu = getMenu("headless-main-menu").catch(() => []);
+  const footerMenu = getMenu("headless-main-menu").catch(() => []);
   const cart = getCart(req.cookies["cartId"]).catch(() => undefined);
 
   res.inertia.share({
