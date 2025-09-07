@@ -15,6 +15,7 @@ type ProductStore = {
   setStateFromParams: (params: URLSearchParams) => void;
   updateOption: (name: string, value: string) => void;
   updateImage: (index: string) => void;
+  reset: () => void;
 };
 
 // Zustand store
@@ -41,12 +42,14 @@ export const useProductStore = create<ProductStore>((set) => ({
         image: index,
       },
     })),
+  reset: () => set({ state: {} }),
 }));
 
 // Initialize Zustand state from Inertia URL
 export function useInitProductState() {
   const { url } = usePage();
   const setStateFromParams = useProductStore((s) => s.setStateFromParams);
+  const reset = useProductStore((s) => s.reset);
 
   useEffect(() => {
     const searchIndex = url.indexOf("?");
@@ -55,6 +58,8 @@ export function useInitProductState() {
       const params = new URLSearchParams(queryString);
       setStateFromParams(params);
     }
+
+    return () => reset();
   }, [url, setStateFromParams]);
 }
 

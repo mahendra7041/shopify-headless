@@ -5,7 +5,7 @@ import LoadingDots from "./loading-dots";
 import Price from "./price";
 import { DEFAULT_OPTION } from "../../app/utils/constants";
 import { createUrl } from "../../app/utils/helper";
-import { Link, usePage } from "@inertiajs/react";
+import { Form, Link, usePage } from "@inertiajs/react";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { DeleteItemButton } from "./delete-item-button";
@@ -23,14 +23,6 @@ export default function CartModal() {
   const quantityRef = useRef(cart?.totalQuantity);
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
-  const updateCartItem = () => {};
-  const redirectToCheckout = "/";
-
-  useEffect(() => {
-    if (!cart) {
-      // createCartAndSetCookie();
-    }
-  }, [cart]);
 
   useEffect(() => {
     if (
@@ -208,7 +200,7 @@ export default function CartModal() {
                       />
                     </div>
                   </div>
-                  <form action={redirectToCheckout}>
+                  <form action={cart.checkoutUrl}>
                     <CheckoutButton />
                   </form>
                 </div>
@@ -235,15 +227,12 @@ function CloseCart({ className }: { className?: string }) {
 }
 
 function CheckoutButton() {
-  const { pending } = useFormStatus();
-
   return (
     <button
       className="block w-full rounded-full bg-blue-600 p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100"
       type="submit"
-      disabled={pending}
     >
-      {pending ? <LoadingDots className="bg-white" /> : "Proceed to Checkout"}
+      Proceed to Checkout
     </button>
   );
 }
