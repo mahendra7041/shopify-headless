@@ -5,11 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch server.ts",
-    "start": "node build/server/server.js",
+    "start": "node dist/server.js",
     "build": "npm run build:server && npm run build:ssr && npm run build:client",
     "build:server": "tsc --project tsconfig.server.json",
-    "build:client": "tsc -b && vite build --outDir build/client",
-    "build:ssr": "tsc -b && vite build --outDir build/ssr --ssr src/ssr.tsx",
+    "build:client": "tsc -b && vite build --outDir dist/build/client",
+    "build:ssr": "tsc -b && vite build --outDir dist/build/ssr --ssr src/ssr.tsx",
     "lint": "eslint ."
   },
   "dependencies": {
@@ -28,6 +28,7 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "shopify-api-types": "^0.0.5-alpha",
+    "sonner": "^2.0.7",
     "tailwindcss": "^4.1.13",
     "zustand": "^5.0.8"
   },

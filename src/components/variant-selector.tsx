@@ -57,7 +57,7 @@ export function VariantSelector({
                 options.find(
                   (option) =>
                     option.name.toLowerCase() === key &&
-                    option.values.includes(value)
+                    option.values.includes(value as any)
                 )
             );
             const isAvailableForSale = combinations.find((combination) =>

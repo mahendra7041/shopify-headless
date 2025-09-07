@@ -1,7 +1,6 @@
 import type { Request, Response } from "express";
 import { HIDDEN_PRODUCT_TAG, SHOPIFY_GRAPHQL_API_ENDPOINT } from "./constants";
 import { isShopifyError } from "./type-guards";
-import { ensureStartsWith } from "./helper";
 import {
   Cart,
   Collection,
@@ -61,7 +60,7 @@ export async function shopifyFetch<T extends Record<string, any>>({
   variables?: ExtractVariables<T>;
 }): Promise<{ status: number; body: Omit<T, "variables"> } | never> {
   try {
-    const result = await fetch(endpoint, {
+    const result: any = await fetch(endpoint, {
       method: "POST",
       headers: {
         "X-Shopify-Storefront-Access-Token": key,

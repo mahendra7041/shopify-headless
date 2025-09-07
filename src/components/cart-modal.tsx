@@ -1,13 +1,11 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { ShoppingCartIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
-import LoadingDots from "./loading-dots";
 import Price from "./price";
 import { DEFAULT_OPTION } from "../../app/utils/constants";
 import { createUrl } from "../../app/utils/helper";
-import { Form, Link, usePage } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import { Fragment, useEffect, useRef, useState } from "react";
-import { useFormStatus } from "react-dom";
 import { DeleteItemButton } from "./delete-item-button";
 import { EditItemQuantityButton } from "./edit-item-quantity-button";
 import OpenCart from "./open-cart";
