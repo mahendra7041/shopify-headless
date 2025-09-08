@@ -1,8 +1,8 @@
 import ProductFragment from "#graphql/ProductFragment";
 
 const GetProductRecommendationsQuery = `#graphql
-  query GetProductRecommendations($productId: ID!) {
-    productRecommendations(productId: $productId) {
+  query GetProductRecommendations($productHandle: String!) {
+    productRecommendations(productHandle: $productHandle) {
       ...product
     }
   }

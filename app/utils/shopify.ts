@@ -340,12 +340,12 @@ export async function getProducts({
 }
 
 export async function getProductRecommendations(
-  productId: string
+  productHandle: string
 ): Promise<Product[]> {
   const res = await shopifyFetch<ShopifyProductRecommendationsOperation>({
     query: GetProductRecommendationsQuery,
     variables: {
-      productId,
+      productHandle,
     },
   });
 

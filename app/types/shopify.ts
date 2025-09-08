@@ -256,7 +256,7 @@ export type ShopifyProductRecommendationsOperation = {
     productRecommendations: ShopifyProduct[];
   };
   variables: {
-    productId: string;
+    productHandle: string;
   };
 };
 
