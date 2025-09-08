@@ -3,8 +3,8 @@ import {
   getCollectionProducts,
   getCollections,
   getProducts,
-} from "../utils/shopify";
-import { defaultSort, sorting } from "../utils/constants";
+} from "#utils/shopify";
+import { defaultSort, sorting } from "#utils/constants";
 
 export function search(req: Request, res: Response) {
   const { sort, q: searchValue } = req.query;

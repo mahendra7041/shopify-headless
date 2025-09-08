@@ -1,7 +1,10 @@
 import type { Request, Response } from "express";
-import { HIDDEN_PRODUCT_TAG, SHOPIFY_GRAPHQL_API_ENDPOINT } from "./constants";
-import { isShopifyError } from "./type-guards";
 import {
+  HIDDEN_PRODUCT_TAG,
+  SHOPIFY_GRAPHQL_API_ENDPOINT,
+} from "#utils/constants";
+import { isShopifyError } from "#utils/type-guards";
+import type {
   Cart,
   Collection,
   Connection,
@@ -26,21 +29,21 @@ import {
   ShopifyProductsOperation,
   ShopifyRemoveFromCartOperation,
   ShopifyUpdateCartOperation,
-} from "../types/shopify";
-import RemoveFromCartMutation from "../graphql/RemoveFromCartMutation";
-import AddToCartMutation from "../graphql/AddToCartMutation";
-import EditCartItemsMutation from "../graphql/EditCartItemsMutation";
-import GetCartQuery from "../graphql/GetCartQuery";
-import GetCollectionQuery from "../graphql/GetCollectionQuery";
-import GetCollectionProductsQuery from "../graphql/GetCollectionProductsQuery";
-import GetCollectionsQuery from "../graphql/GetCollectionsQuery";
-import GetMenuQuery from "../graphql/GetMenuQuery";
-import GetPageQuery from "../graphql/GetPageQuery";
-import GetPagesQuery from "../graphql/GetPagesQuery";
-import GetProductQuery from "../graphql/GetProductQuery";
-import GetProductRecommendationsQuery from "../graphql/GetProductRecommendationsQuery";
-import GetProductsQuery from "../graphql/GetProductsQuery";
-import CreateCartMutation from "../graphql/CreateCartMutation";
+} from "#types/shopify";
+import RemoveFromCartMutation from "#graphql/RemoveFromCartMutation";
+import AddToCartMutation from "#graphql/AddToCartMutation";
+import EditCartItemsMutation from "#graphql/EditCartItemsMutation";
+import GetCartQuery from "#graphql/GetCartQuery";
+import GetCollectionQuery from "#graphql/GetCollectionQuery";
+import GetCollectionProductsQuery from "#graphql/GetCollectionProductsQuery";
+import GetCollectionsQuery from "#graphql/GetCollectionsQuery";
+import GetMenuQuery from "#graphql/GetMenuQuery";
+import GetPageQuery from "#graphql/GetPageQuery";
+import GetPagesQuery from "#graphql/GetPagesQuery";
+import GetProductQuery from "#graphql/GetProductQuery";
+import GetProductRecommendationsQuery from "#graphql/GetProductRecommendationsQuery";
+import GetProductsQuery from "#graphql/GetProductsQuery";
+import CreateCartMutation from "#graphql/CreateCartMutation";
 
 const domain = `https://mahendra-test-store2.myshopify.com`;
 const endpoint = `${domain}${SHOPIFY_GRAPHQL_API_ENDPOINT}`;

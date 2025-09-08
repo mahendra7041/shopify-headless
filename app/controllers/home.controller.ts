@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { getCollectionProducts } from "../utils/shopify";
+import { getCollectionProducts } from "#utils/shopify";
 
 export function index(_req: Request, res: Response) {
   const homepageItems = getCollectionProducts({

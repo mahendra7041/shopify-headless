@@ -1,4 +1,4 @@
-import CartFragment from "./CartFragment";
+import CartFragment from "#graphql/CartFragment";
 
 const GetCartQuery = `#graphql
   query GetCart($cartId: ID!) {

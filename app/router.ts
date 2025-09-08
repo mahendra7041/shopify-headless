@@ -1,11 +1,11 @@
 import { Router } from "express";
-import * as homeController from "./controllers/home.controller";
-import * as productController from "./controllers/product.controller";
-import * as searchController from "./controllers/search.controller";
-import * as cartController from "./controllers/cart.controller";
-import * as pageController from "./controllers/page.controller";
-import shareLayoutData from "./middlewares/share-layout-data.middleware";
-import createCartMiddleware from "./middlewares/create-cart";
+import * as homeController from "#controllers/home.controller";
+import * as productController from "#controllers/product.controller";
+import * as searchController from "#controllers/search.controller";
+import * as cartController from "#controllers/cart.controller";
+import * as pageController from "#controllers/page.controller";
+import shareLayoutData from "#middlewares/share-layout-data.middleware";
+import createCartMiddleware from "#middlewares/create-cart";
 
 const app = Router();
 app.use(shareLayoutData);

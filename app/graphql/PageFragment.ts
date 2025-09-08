@@ -1,4 +1,4 @@
-import SeoFragment from "./SeoFragment";
+import SeoFragment from "#graphql/SeoFragment";
 
 const PageFragment = `#graphql
   fragment page on Page {

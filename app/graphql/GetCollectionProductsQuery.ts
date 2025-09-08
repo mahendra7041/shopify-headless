@@ -1,4 +1,4 @@
-import ProductFragment from "./ProductFragment";
+import ProductFragment from "#graphql/ProductFragment";
 
 export const GetCollectionProductsQuery = `#graphql
   query GetCollectionProducts(

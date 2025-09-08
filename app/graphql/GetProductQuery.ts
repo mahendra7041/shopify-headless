@@ -1,4 +1,4 @@
-import ProductFragment from "./ProductFragment";
+import ProductFragment from "#graphql/ProductFragment";
 
 const GetProductQuery = `#graphql
   query GetProduct($handle: String!) {

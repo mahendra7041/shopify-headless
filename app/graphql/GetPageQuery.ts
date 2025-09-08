@@ -1,4 +1,4 @@
-import PageFragment from "./PageFragment";
+import PageFragment from "#graphql/PageFragment";
 
 export const GetPageQuery = `#graphql
   query GetPage($handle: String!) {

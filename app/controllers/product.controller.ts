@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { getProduct, getProductRecommendations } from "../utils/shopify";
+import { getProduct, getProductRecommendations } from "#utils/shopify";
 
 export function index(req: Request, res: Response) {
   const product = getProduct(req.params.handle).catch(() => {});

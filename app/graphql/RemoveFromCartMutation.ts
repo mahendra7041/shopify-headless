@@ -1,4 +1,4 @@
-import CartFragment from "./CartFragment";
+import CartFragment from "#graphql/CartFragment";
 
 const RemoveFromCartMutation = `#graphql
   mutation RemoveFromCart($cartId: ID!, $lineIds: [ID!]!) {

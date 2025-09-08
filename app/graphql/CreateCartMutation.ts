@@ -1,4 +1,4 @@
-import CartFragment from "./CartFragment";
+import CartFragment from "#graphql/CartFragment";
 
 const CreateCartMutation = `#graphql
   mutation CreateCart($lineItems: [CartLineInput!]) {

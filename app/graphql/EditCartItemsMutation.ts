@@ -1,4 +1,4 @@
-import CartFragment from "./CartFragment";
+import CartFragment from "#graphql/CartFragment";
 
 const EditCartItemsMutation = `#graphql
   mutation EditCartItems($cartId: ID!, $lines: [CartLineUpdateInput!]!) {

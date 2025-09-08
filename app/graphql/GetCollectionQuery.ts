@@ -1,4 +1,4 @@
-import CollectionFragment from "./CollectionFragment";
+import CollectionFragment from "#graphql/CollectionFragment";
 
 const GetCollectionQuery = `#graphql
   query GetCollection($handle: String!) {

@@ -1,9 +1,33 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" },
-    { "path": "./tsconfig.server.json" }
-  ],
-  "exclude": ["node_modules", "build"]
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "esnext",
+    "lib": ["ESNext"],
+    "types": ["@types/node"],
+    "rootDir": "./",
+    "outDir": "./build",
+    "moduleResolution": "Bundler",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "isolatedModules": true,
+    "removeComments": true,
+    "esModuleInterop": true,
+    "strictNullChecks": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "strictPropertyInitialization": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "noImplicitThis": true,
+    "skipLibCheck": true,
+    "declaration": false,
+    "sourceMap": true,
+    "emitDecoratorMetadata": true
+  },
+  "ts-node": {
+    "swc": true
+  },
+  "exclude": ["./src/**/*", "node_modules", "build"]
 }

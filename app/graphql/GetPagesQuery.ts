@@ -1,4 +1,4 @@
-import PageFragment from "./PageFragment";
+import PageFragment from "#graphql/PageFragment";
 
 const GetPagesQuery = `#graphql
   query GetPages {

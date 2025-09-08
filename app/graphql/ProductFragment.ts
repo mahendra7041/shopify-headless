@@ -1,5 +1,5 @@
-import ImageFragment from "./ImageFragment";
-import SeoFragment from "./SeoFragment";
+import ImageFragment from "#graphql/ImageFragment";
+import SeoFragment from "#graphql/SeoFragment";
 
 const ProductFragment = `#graphql
   fragment product on Product {

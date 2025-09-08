@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { addToCart, removeFromCart, updateCart } from "../utils/shopify";
+import { addToCart, removeFromCart, updateCart } from "#utils/shopify";
 
 export async function add(req: Request, res: Response) {
   const cartId = req.cookies["cartId"];

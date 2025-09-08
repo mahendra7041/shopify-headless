@@ -3,8 +3,8 @@ import express, { NextFunction, Request, Response } from "express";
 import session from "express-session";
 import inertia from "express-inertia";
 import cookieParser from "cookie-parser";
-import inertiaConfig from "./configs/inertia.config.js";
-import sessionConfig from "./configs/session.config.js";
+import inertiaConfig from "#configs/inertia.config";
+import sessionConfig from "#configs/session.config";
 import router from "./app/router.js";
 
 async function bootstrap() {
@@ -22,7 +22,7 @@ async function bootstrap() {
 
   app.use(router);
 
-  app.use((error: any, req: Request, res: Response, _next: NextFunction) => {
+  app.use((error: any, _req: Request, res: Response, _next: NextFunction) => {
     console.log(error);
     res.send("Internal Server Error");
   });
