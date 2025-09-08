@@ -3,6 +3,7 @@ import * as homeController from "./controllers/home.controller";
 import * as productController from "./controllers/product.controller";
 import * as searchController from "./controllers/search.controller";
 import * as cartController from "./controllers/cart.controller";
+import * as pageController from "./controllers/page.controller";
 import shareLayoutData from "./middlewares/share-layout-data.middleware";
 import createCartMiddleware from "./middlewares/create-cart";
 
@@ -17,5 +18,7 @@ app.use("/cart", createCartMiddleware);
 app.post("/cart/add", cartController.add);
 app.post("/cart/remove", cartController.remove);
 app.post("/cart/update", cartController.update);
+
+app.get("/:page", pageController.index);
 
 export default app;
