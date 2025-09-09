@@ -2,14 +2,14 @@ import { Dialog, Transition } from "@headlessui/react";
 import { ShoppingCartIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import Price from "./price";
-import { DEFAULT_OPTION } from "../../app/utils/constants";
-import { createUrl } from "../../app/utils/helper";
+import { DEFAULT_OPTION } from "#utils/constants";
+import { createUrl } from "../utils/helper";
 import { Link, usePage } from "@inertiajs/react";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { DeleteItemButton } from "./delete-item-button";
 import { EditItemQuantityButton } from "./edit-item-quantity-button";
 import OpenCart from "./open-cart";
-import type { Cart } from "../../app/types/shopify";
+import type { Cart } from "#types/shopify";
 
 type MerchandiseSearchParams = {
   [key: string]: string;

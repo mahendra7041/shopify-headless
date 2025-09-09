@@ -2,7 +2,7 @@
 
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
-import type { CartItem } from "../../app/types/shopify";
+import type { CartItem } from "#types/shopify";
 import { Form } from "@inertiajs/react";
 
 function SubmitButton({ type }: { type: "plus" | "minus" }) {

@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import type { ProductOption, ProductVariant } from "../../app/types/shopify";
+import type { ProductOption, ProductVariant } from "#types/shopify";
 import { useProductStore, useUpdateURL } from "../hooks/useProductStore";
 
 type Combination = {

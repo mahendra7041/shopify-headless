@@ -7,7 +7,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Search from "./search";
 import { useQueryParams } from "../hooks/useQueryParam";
 import { usePathname } from "../hooks/usePathname";
-import type { Menu } from "../../app/types/shopify";
+import type { Menu } from "#types/shopify";
 
 export default function MobileMenu({ menu }: { menu: Menu[] }) {
   const pathname = usePathname();

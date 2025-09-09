@@ -1,5 +1,5 @@
 import { Link, usePage } from "@inertiajs/react";
-import type { ShopifyProduct } from "../../app/types/shopify";
+import type { ShopifyProduct } from "#types/shopify";
 import { GridTileImage } from "./tile";
 
 export function RelatedProducts() {

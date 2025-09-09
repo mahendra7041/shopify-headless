@@ -2,7 +2,7 @@
 
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Form } from "@inertiajs/react";
-import type { CartItem } from "../../app/types/shopify";
+import type { CartItem } from "#types/shopify";
 
 export function DeleteItemButton({ item }: { item: CartItem }) {
   const message = "";

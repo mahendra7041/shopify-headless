@@ -1,5 +1,5 @@
 import { type ReactElement } from "react";
-import type { Image, Product } from "../../app/types/shopify";
+import type { Image, Product } from "#types/shopify";
 import { ProductDescription } from "../components/product-description";
 import { Gallery } from "../components/gallery";
 import Layout from "../layout/main-layout";

@@ -1,6 +1,6 @@
 import Grid from "./grid";
 import { GridTileImage } from "./tile";
-import type { Product } from "../../app/types/shopify";
+import type { Product } from "#types/shopify";
 import { Link } from "@inertiajs/react";
 
 export default function ProductGridItems({

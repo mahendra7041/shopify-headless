@@ -1,6 +1,6 @@
 import { PlusIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
-import type { Product, ProductVariant } from "../../app/types/shopify";
+import type { Product, ProductVariant } from "#types/shopify";
 import { Form } from "@inertiajs/react";
 import { useProductStore } from "../hooks/useProductStore";
 

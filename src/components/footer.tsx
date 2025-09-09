@@ -1,16 +1,16 @@
 import FooterMenu from "./footer-menu";
 import LogoSquare from "./logo-square";
 import { Link, usePage } from "@inertiajs/react";
-import type { Menu } from "../../app/types/shopify";
+import type { Menu } from "#types/shopify";
 
-const COMPANY_NAME = "COMPANY_NAME";
-const SITE_NAME = "SITE_NAME";
+const VITE_COMPANY_NAME = import.meta.env.VITE_COMPANY_NAME;
+const SITE_NAME = import.meta.env.VITE_SITE_NAME;
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const copyrightDate = 2023 + (currentYear > 2023 ? `-${currentYear}` : "");
   const menu = usePage().props.footerMenu as Menu[];
-  const copyrightName = COMPANY_NAME || SITE_NAME || "";
+  const copyrightName = VITE_COMPANY_NAME || SITE_NAME || "";
 
   return (
     <footer className="text-sm text-neutral-500 dark:text-neutral-400">

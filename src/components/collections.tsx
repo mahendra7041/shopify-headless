@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { Suspense } from "react";
 import FilterList from "./filter";
 import { usePage } from "@inertiajs/react";
-import type { Collection } from "../../app/types/shopify";
+import type { Collection } from "#types/shopify";
 
 function CollectionList() {
   const collections = usePage().props.collections as Collection[];

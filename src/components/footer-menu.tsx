@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import type { Menu } from "../../app/types/shopify";
+import type { Menu } from "#types/shopify";
 import { Link } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 import { usePathname } from "../hooks/usePathname";

@@ -1,5 +1,5 @@
 import { GridTileImage } from "./tile";
-import type { Product } from "../../app/types/shopify";
+import type { Product } from "#types/shopify";
 import { Link, usePage } from "@inertiajs/react";
 
 function ThreeItemGridItem({

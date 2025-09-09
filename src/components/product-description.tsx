@@ -1,6 +1,6 @@
 import Price from "./price";
 import Prose from "./prose";
-import type { Product } from "../../app/types/shopify";
+import type { Product } from "#types/shopify";
 import { VariantSelector } from "./variant-selector";
 import { AddToCart } from "./add-to-cart";
 

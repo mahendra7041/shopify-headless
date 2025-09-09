@@ -3,9 +3,9 @@ import LogoSquare from "./logo-square";
 import MobileMenu from "./mobile-menu";
 import Search from "./search";
 import { usePage, Link } from "@inertiajs/react";
-import type { Menu } from "../../app/types/shopify";
+import type { Menu } from "#types/shopify";
 
-const SITE_NAME = "SITE_NAME";
+const SITE_NAME = import.meta.env.VITE_SITE_NAME;
 
 export default function Navbar() {
   const menu = usePage().props.headerMenu as Menu[];

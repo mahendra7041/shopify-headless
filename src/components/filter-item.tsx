@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import type { SortFilterItem } from "../../app/utils/constants";
-import { createUrl } from "../../app/utils/helper";
+import { createUrl } from "../utils/helper";
 import { Link } from "@inertiajs/react";
 import type { ListItem, PathFilterItem } from "./filter";
 import { useQueryParams } from "../hooks/useQueryParam";
