@@ -11,8 +11,9 @@ export async function add(req: Request, res: Response) {
 
 export async function remove(req: Request, res: Response) {
   const cartId = req.cookies["cartId"];
-  const variantId = req.body.variantId;
-  await removeFromCart(cartId, [variantId]);
+  const cartLineId = req.body.cartLineId;
+
+  await removeFromCart(cartId, [cartLineId]);
   res.inertia.redirect(req.get("Referer") || "/");
 }
 

@@ -2,8 +2,7 @@
 
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
-import type { CartItem } from "../../app/types/shopify";
-import { Form } from "@inertiajs/react";
+import type { CartItem } from "#types/shopify";
 
 function SubmitButton({ type }: { type: "plus" | "minus" }) {
   return (
@@ -31,31 +30,32 @@ function SubmitButton({ type }: { type: "plus" | "minus" }) {
 export function EditItemQuantityButton({
   item,
   type,
+  optimisticUpdate,
 }: {
   item: CartItem;
   type: "plus" | "minus";
+  optimisticUpdate: any;
 }) {
-  const message = "";
-
   const payload = {
-    id: item.id,
     merchandiseId: item.merchandise.id,
     quantity: type === "plus" ? item.quantity + 1 : item.quantity - 1,
   };
+  const updateItemQuantityAction = async () => {
+    // payload
+  };
+  const message = "";
 
   return (
-    <Form action={"/cart/update"} method="post">
+    <form
+      action={async () => {
+        optimisticUpdate(payload.merchandiseId, type);
+        updateItemQuantityAction();
+      }}
+    >
       <SubmitButton type={type} />
-      <input type="hidden" name="id" defaultValue={payload.id} />
-      <input
-        type="hidden"
-        name="merchandiseId"
-        defaultValue={payload.merchandiseId}
-      />
-      <input type="hidden" name="quantity" defaultValue={payload.quantity} />
       <p aria-live="polite" className="sr-only" role="status">
         {message}
       </p>
-    </Form>
+    </form>
   );
 }

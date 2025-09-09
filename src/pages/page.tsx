@@ -1,5 +1,5 @@
 import type { ReactElement } from "react";
-import type { Page } from "../../app/types/shopify";
+import type { Page } from "#types/shopify";
 import Prose from "../components/prose";
 import Layout from "../layout/main-layout";
 

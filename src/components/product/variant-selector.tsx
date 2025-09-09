@@ -1,8 +1,8 @@
 "use client";
 
 import clsx from "clsx";
-import type { ProductOption, ProductVariant } from "../../app/types/shopify";
-import { useProductStore, useUpdateURL } from "../hooks/useProductStore";
+import type { ProductOption, ProductVariant } from "#types/shopify";
+import { useProduct, useUpdateURL } from "./product-context";
 
 type Combination = {
   id: string;
@@ -17,7 +17,7 @@ export function VariantSelector({
   options: ProductOption[];
   variants: ProductVariant[];
 }) {
-  const { state, updateOption } = useProductStore();
+  const { state, updateOption } = useProduct();
   const updateURL = useUpdateURL();
 
   const hasNoOptionsOrJustOneOption =

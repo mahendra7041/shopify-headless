@@ -1,26 +1,34 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { ShoppingCartIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
-import Price from "./price";
-import { DEFAULT_OPTION } from "../../app/utils/constants";
-import { createUrl } from "../../app/utils/helper";
-import { Link, usePage } from "@inertiajs/react";
+import LoadingDots from "../loading-dots";
+import Price from "../price";
+import { DEFAULT_OPTION } from "#utils/constants";
+import { createUrl } from "#utils/helper";
+import { Link } from "@inertiajs/react";
 import { Fragment, useEffect, useRef, useState } from "react";
+import { useFormStatus } from "react-dom";
+import { useCart } from "./cart-context";
 import { DeleteItemButton } from "./delete-item-button";
 import { EditItemQuantityButton } from "./edit-item-quantity-button";
 import OpenCart from "./open-cart";
-import type { Cart } from "../../app/types/shopify";
 
 type MerchandiseSearchParams = {
   [key: string]: string;
 };
 
 export default function CartModal() {
-  const cart = usePage().props.cart as Cart;
+  const { cart, updateCartItem } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const quantityRef = useRef(cart?.totalQuantity);
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
+
+  // useEffect(() => {
+  //   if (!cart) {
+  //     createCartAndSetCookie();
+  //   }
+  // }, [cart]);
 
   useEffect(() => {
     if (
@@ -111,7 +119,10 @@ export default function CartModal() {
                           >
                             <div className="relative flex w-full flex-row justify-between px-1 py-4">
                               <div className="absolute z-40 -ml-1 -mt-2">
-                                <DeleteItemButton item={item} />
+                                <DeleteItemButton
+                                  item={item}
+                                  optimisticUpdate={updateCartItem}
+                                />
                               </div>
                               <div className="flex flex-row">
                                 <div className="relative h-16 w-16 overflow-hidden rounded-md border border-neutral-300 bg-neutral-300 dark:border-neutral-700 dark:bg-neutral-900 dark:hover:bg-neutral-800">
@@ -159,6 +170,7 @@ export default function CartModal() {
                                   <EditItemQuantityButton
                                     item={item}
                                     type="minus"
+                                    optimisticUpdate={updateCartItem}
                                   />
                                   <p className="w-6 text-center">
                                     <span className="w-full text-sm">
@@ -168,6 +180,7 @@ export default function CartModal() {
                                   <EditItemQuantityButton
                                     item={item}
                                     type="plus"
+                                    optimisticUpdate={updateCartItem}
                                   />
                                 </div>
                               </div>
@@ -225,12 +238,15 @@ function CloseCart({ className }: { className?: string }) {
 }
 
 function CheckoutButton() {
+  const { pending } = useFormStatus();
+
   return (
     <button
       className="block w-full rounded-full bg-blue-600 p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100"
       type="submit"
+      disabled={pending}
     >
-      Proceed to Checkout
+      {pending ? <LoadingDots className="bg-white" /> : "Proceed to Checkout"}
     </button>
   );
 }

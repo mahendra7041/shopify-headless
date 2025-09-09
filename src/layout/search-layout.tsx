@@ -1,7 +1,7 @@
 import Collections from "../components/collections";
 import FilterList from "../components/filter";
 import Layout from "./main-layout";
-import { sorting } from "../../app/utils/constants";
+import { sorting } from "#utils/constants";
 
 export default function SearchLayout({
   children,

@@ -1,15 +1,15 @@
 "use client";
 
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
-import { GridTileImage } from "./tile";
-import { useProductStore, useUpdateURL } from "../hooks/useProductStore";
+import { GridTileImage } from "../tile";
+import { useProduct, useUpdateURL } from "../product/product-context";
 
 export function Gallery({
   images,
 }: {
   images: { src: string; altText: string }[];
 }) {
-  const { state, updateImage } = useProductStore();
+  const { state, updateImage } = useProduct();
 
   const updateURL = useUpdateURL();
 

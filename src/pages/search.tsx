@@ -1,7 +1,7 @@
 import type { ReactElement } from "react";
 import Grid from "../components/grid";
 import ProductGridItems from "../components/product-grid-items";
-import type { Product } from "../../app/types/shopify";
+import type { Product } from "#types/shopify";
 import SearchLayout from "../layout/search-layout";
 
 function search({ products }: { products: Product[] }) {

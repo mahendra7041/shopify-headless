@@ -1,8 +1,9 @@
 import { PlusIcon } from "@heroicons/react/24/outline";
+import { useProduct } from "../product/product-context";
+import { Product, ProductVariant } from "#types/shopify";
+import { useCart } from "./cart-context";
 import clsx from "clsx";
-import type { Product, ProductVariant } from "../../app/types/shopify";
-import { Form } from "@inertiajs/react";
-import { useProductStore } from "../hooks/useProductStore";
+import { useForm } from "@inertiajs/react";
 
 function SubmitButton({
   availableForSale,
@@ -55,7 +56,8 @@ function SubmitButton({
 
 export function AddToCart({ product }: { product: Product }) {
   const { variants, availableForSale } = product;
-  const { state } = useProductStore();
+  const { addCartItem } = useCart();
+  const { state } = useProduct();
 
   const variant = variants.find((variant: ProductVariant) =>
     variant.selectedOptions.every(
@@ -64,27 +66,44 @@ export function AddToCart({ product }: { product: Product }) {
   );
   const defaultVariantId = variants.length === 1 ? variants[0]?.id : undefined;
   const selectedVariantId = variant?.id || defaultVariantId;
-
   const finalVariant = variants.find(
     (variant) => variant.id === selectedVariantId
   )!;
 
+  const { post } = useForm({
+    variantId: selectedVariantId,
+  });
+
+  const addItemAction = async (): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      post("/cart/add", {
+        onSuccess: () => {
+          resolve();
+        },
+        onError: (error: unknown) => {
+          reject(error);
+        },
+        only: ["cart"],
+      });
+    });
+  };
+
   const message = "";
 
   return (
-    <Form action="/cart/add" method="post">
+    <form
+      action={async () => {
+        addCartItem(finalVariant, product);
+        addItemAction();
+      }}
+    >
       <SubmitButton
         availableForSale={availableForSale}
         selectedVariantId={selectedVariantId}
       />
-      <input
-        type="hidden"
-        name="variantId"
-        defaultValue={finalVariant?.id || product.variants[0].id}
-      />
       <p aria-live="polite" className="sr-only" role="status">
         {message}
       </p>
-    </Form>
+    </form>
   );
 }

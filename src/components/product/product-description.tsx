@@ -1,8 +1,8 @@
-import Price from "./price";
-import Prose from "./prose";
-import type { Product } from "../../app/types/shopify";
+import Price from "../price";
+import Prose from "../prose";
+import type { Product } from "#types/shopify";
 import { VariantSelector } from "./variant-selector";
-import { AddToCart } from "./add-to-cart";
+import { AddToCart } from "../cart/add-to-cart";
 
 export function ProductDescription({ product }: { product: Product }) {
   return (
