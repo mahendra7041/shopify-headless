@@ -1,8 +1,9 @@
 import { PlusIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import type { Product, ProductVariant } from "#types/shopify";
-import { Form } from "@inertiajs/react";
+import { useForm } from "@inertiajs/react";
 import { useProductStore } from "../hooks/useProductStore";
+import { FormEvent } from "react";
 
 function SubmitButton({
   availableForSale,
@@ -65,26 +66,28 @@ export function AddToCart({ product }: { product: Product }) {
   const defaultVariantId = variants.length === 1 ? variants[0]?.id : undefined;
   const selectedVariantId = variant?.id || defaultVariantId;
 
-  const finalVariant = variants.find(
-    (variant) => variant.id === selectedVariantId
-  )!;
+  const { post } = useForm({
+    variantId: selectedVariantId,
+  });
+
+  const addItemAction = (e: FormEvent) => {
+    e.preventDefault();
+    post("/cart/add", {
+      only: ["cart"],
+    });
+  };
 
   const message = "";
 
   return (
-    <Form action="/cart/add" method="post">
+    <form onSubmit={addItemAction}>
       <SubmitButton
         availableForSale={availableForSale}
         selectedVariantId={selectedVariantId}
       />
-      <input
-        type="hidden"
-        name="variantId"
-        defaultValue={finalVariant?.id || product.variants[0].id}
-      />
       <p aria-live="polite" className="sr-only" role="status">
         {message}
       </p>
-    </Form>
+    </form>
   );
 }

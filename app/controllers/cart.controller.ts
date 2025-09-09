@@ -18,10 +18,10 @@ export async function remove(req: Request, res: Response) {
 
 export async function update(req: Request, res: Response) {
   const cartId = req.cookies["cartId"];
-  const variantId = req.body.merchandiseId;
+  const merchandiseId = req.body.merchandiseId;
   const id = req.body.id;
   const quantity = +req.body.quantity;
-  const cartLines = [{ id, merchandiseId: variantId, quantity }];
+  const cartLines = [{ id, merchandiseId: merchandiseId, quantity }];
   await updateCart(cartId, cartLines);
   res.inertia.redirect(req.get("Referer") || "/");
 }

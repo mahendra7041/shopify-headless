@@ -3,7 +3,8 @@
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import type { CartItem } from "#types/shopify";
-import { Form } from "@inertiajs/react";
+import { useForm } from "@inertiajs/react";
+import { FormEvent } from "react";
 
 function SubmitButton({ type }: { type: "plus" | "minus" }) {
   return (
@@ -43,19 +44,21 @@ export function EditItemQuantityButton({
     quantity: type === "plus" ? item.quantity + 1 : item.quantity - 1,
   };
 
+  const { post } = useForm(payload);
+
+  const updateItemQuantityAction = (e: FormEvent) => {
+    e.preventDefault();
+    post("/cart/update", {
+      only: ["cart"],
+    });
+  };
+
   return (
-    <Form action={"/cart/update"} method="post">
+    <form onSubmit={updateItemQuantityAction}>
       <SubmitButton type={type} />
-      <input type="hidden" name="id" defaultValue={payload.id} />
-      <input
-        type="hidden"
-        name="merchandiseId"
-        defaultValue={payload.merchandiseId}
-      />
-      <input type="hidden" name="quantity" defaultValue={payload.quantity} />
       <p aria-live="polite" className="sr-only" role="status">
         {message}
       </p>
-    </Form>
+    </form>
   );
 }
